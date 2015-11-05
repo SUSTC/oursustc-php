@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title><?php if ($html_title) { echo $html_title.' - '; }?>问卷调查</title>
+		
+		<link rel="stylesheet" type="text/css" href="/static/legacy/css/all.min.css" />
+		<!-- <link rel="stylesheet" type="text/css" href="/static/legacy/css/bootstrap.min.css" /> -->
+		<link rel="stylesheet" type="text/css" href="css/survey.css" />
+	</head>
+	<body>
+		<div class="navbar navbar-inverse navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container">
+					<button type="button" data-toggle="collapse" data-target=".nav-collapse" class="btn btn-navbar">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a href="#" class="brand">SUSTC</a>
+					<div class="nav-collapse collapse">
+						<ul class="nav">
+							<!-- <li class="dropdown"><a href="/user/login">登录</a></li>
+							<li class=""><a href="/">Home</a></li>
+							<li class=""><a href="/store">商店</a></li>
+							<li class=""><a href="/journal">刊物</a></li>
+							<li class=""><a href="/channel">揭示板</a></li>
+							<li class=""><a href="/page/thanks">感谢</a></li> -->
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="header">
+			<div id="overview" class="jumbotron subhead">
+				<div class="container">
+					<h1>问卷调查</h1>
+					<p>请认真填写相关问题</p>
+				</div>
+			</div>
+		</div>
+		<div class="wrapper">
+			<div class="decoration clouds"></div>
+			<div class="container">
+				<div id="loading">
+					Loading...
+				</div>
+				<div id="survey" style="display: none;"></div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		<div class="footer">
+			<div class="container">
+				<p>© 2014 南方科技大学计算机研究协会</p>
+				<ul class="footer-links">
+					<!-- <li><a href="/page/privacypolicy">隐私政策</a></li>
+					<li class="muted">·</li>
+					<li><a href="/page/about">关于</a></li>
+					<li class="muted">·</li>
+					<li><a href="/page/thanks">感谢</a></li> -->
+				</ul>
+			</div>
+		</div>
+		<script type="text/javascript" src="/static/legacy/js/jquery-1.10.2.min.js"></script>
+		<script type="text/javascript" src="/static/legacy/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="/static/legacy/js/bootstrap-slider.js"></script>
+		<script type="text/javascript" src="/static/legacy/js/bootstrap-rating-input.js"></script>
+		<script type="text/javascript" src="/static/legacy/js/sustc.js"></script>
+		<script type="text/javascript">
+			var survey = <?php if ($js_survey) { echo $js_survey; } else { echo 'false'; } ?>;
+			var storage = {
+				survey: {
+					<?php echo $id; ?>: {
+						answer: <?php echo $js_storage_answer ? $js_storage_answer : '{}'; ?>
+					}
+				}
+			};
+		</script>
+		<script type="text/javascript" src="js/survey.js?v=20141227"></script>
+	</body>
+</html>

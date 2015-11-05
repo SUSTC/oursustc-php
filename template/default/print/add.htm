@@ -1,0 +1,118 @@
+<!--{template print/print_header}-->
+          <div class="page-header">
+            <div class="page-title"><h3><i class="fa fa-plus"></i> {lang add}</h3><span>{lang print_add_description}</span></div>
+<!--{template print/summary_display}-->
+          </div>
+<!--{template print/print_note}-->
+          <div class="row">
+            <div class="col-md-6">
+              <div class="widget box">
+                <div class="widget-header"><h4><i class="fa fa-list-alt"></i> {lang task}</h4></div>
+                <div class="widget-content">
+                  <form action="/print/add" method="post" enctype="multipart/form-data" class="form-horizontal">
+                    <input type="hidden" name="formhash" value="{$_G['formhash']}">
+                    <!--{if $err['code'] != 0}-->
+                    <div class="alert fade in alert-danger">
+                      <i class="fa fa-remove close" data-dismiss="alert"></i>
+                      {lang error_parameters}
+                    </div>
+                    <!--{/if}-->
+                    <div class="form-group" style="border-bottom:1px solid #ECECEC; padding-bottom:10px;">
+                      <label class="col-md-3 control-label"><i class="fa fa-file"></i> {lang document}</label>
+                      <div class="col-md-9">
+                        <div class="input-group">
+                          <input name="document" class="form-control align-center" type="file">
+                        </div>
+                        <span class="help-block" style="text-align:justify;">{lang print_document_help}<br><strong>{lang note}: {lang print_document_note}</strong></span>
+                      </div>
+                    </div>
+                    <div class="form-group" style="padding-top:10px;">
+                      <label class="col-md-3 control-label"><i class="fa fa-copy"></i> {lang copies}</label>
+                      <div class="col-md-9">
+                        <div class="input-group">
+                          <input name="print[copies]" class="form-control align-center" value="1" type="number" style="width: 50px;">
+                        </div>
+                        <span class="help-block" style="text-align:justify;">{lang print_copies_help}<br><strong>{lang warn}: 该选项指的是打印文档的份数，而不是打印的页数。</strong><br>{lang note}: 如果要打印出来的纸张数过多（多于10张纸），请迅速将纸取出，否则可能导致打印机暂停工作直到取纸盒中的纸被取出。</span>
+                      </div>
+                    </div>
+                    <div class="form-group" style="padding-bottom:10px; border-bottom: 1px solid #ECECEC;">
+                      <label class="col-md-3 control-label"><i class="fa fa-file-text"></i> {lang duplex}</label>
+                      <div class="col-md-9">
+                        <div id="alert_duplex" class="alert alert-warning hide">
+                          {lang not_support_duplex}
+                        </div>
+                        <div id="check_duplex" class="input-group checkbox">
+                          <input name="print[duplex]" class="uniform" type="checkbox" checked>
+                        </div>
+                        <span class="help-block" style="text-align:justify;">{lang print_duplex_help}</span>
+                      </div>
+                    </div>
+                    <div class="form-group" style="padding-bottom:10px; border-bottom: 1px solid #ECECEC;">
+                      <label class="col-md-3 control-label"><i class="fa fa-file-text" style="color:red"></i> {lang print_colorful}</label>
+                      <div class="col-md-9">
+                        <div id="check_colorful" class="input-group checkbox">
+                          <input name="print[colorful]" class="uniform" type="checkbox" checked>
+                        </div>
+                        <span class="help-block" style="text-align:justify;">{lang print_colorful_help}</span>
+                      </div>
+                    </div>
+                    <div class="form-group" style="padding-top:10px;">
+                      <label class="col-md-3 control-label"><i class="fa fa-print"></i> {lang node}</label>
+                      <div class="col-md-9">
+                        <!--{if $cloudprint->nodestatus['online'] <= 0}-->
+                        <div class="alert fade in alert-danger">
+                          <i class="fa fa-remove close" data-dismiss="alert"></i>
+                          <strong>{lang warn}</strong>: {lang all_nodes_offline_alert}
+                        </div>
+                        <!--{/if}-->
+                        <div id="alert_offline" class="alert alert-danger hide">
+                          {lang node_offline_alert}
+                        </div>
+                        <select id="node_list" class="form-control" name="print[node]" style="width:264px;max-width:100%;">
+                          <!-- selected="selected" -->
+                          <!--{loop $cloudprint->nodes &$node}-->
+                          <option value="{$node['id']}">{$node['name']}</option>
+                          <!--{/loop}-->
+                        </select>
+                        <script type="text/javascript">
+                          var cp_nodes = {}; 
+                          <!--{loop $cloudprint->nodes &$node}-->
+                          cp_nodes[{$node['id']}] = {
+                            status: {$node['status']},
+                            duplex: {$node['duplex']},
+                            colorful: {$node['colorful']},
+                            description: "<!--{eval echo addslashes($node['description'])}-->",
+                          };
+                          <!--{/loop}-->
+                        </script>
+                        <span class="help-block" style="text-align:justify;">{lang print_node_help}</span>
+                      </div>
+                    </div>
+                    <div class="form-group align-center">
+                      <label class="col-md-3 control-label"></label>
+                      <div class="col-md-9">
+                        <button type="submit" class="btn" id="task_submit">{lang submit}</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+<!--{template print/print_sidenote}-->
+              <?php /* <div class="widget box">
+                <div class="widget-header"><h4><i class="fa fa-compass"></i> Poll: Should we add support for Litecoin mining?</h4></div>
+                <div class="widget-content" style="padding-left:25px;padding-right:25px;padding-top:15px;padding-bottom:25px;">
+                  <div class="progress-stats"><span class="title"><i class="fa fa-comment"></i> Yes, I would mine LTC on ypool<span>7090</span></span><div class="progress progress-mini progress-striped"><div class="progress-bar progress-bar-info" style="width: 38%; background-color:#0099ff;"></div></div></div>
+                  <div class="progress-stats"><span class="title"><i class="fa fa-comment"></i> Yes, but I probably would not mine LTC on ypool<span>1558</span></span><div class="progress progress-mini progress-striped"><div class="progress-bar progress-bar-info" style="width: 8%; background-color:#0099ff;"></div></div></div>
+                  <div class="progress-stats"><span class="title"><i class="fa fa-comment"></i> No, there are already enough LTC pools<span>2362</span></span><div class="progress progress-mini progress-striped"><div class="progress-bar progress-bar-info" style="width: 12%; background-color:#0099ff;"></div></div></div>
+                  <div class="progress-stats"><span class="title"><i class="fa fa-comment"></i> I don't care / I am only interested in CPU mining<span>7191</span></span><div class="progress progress-mini progress-striped"><div class="progress-bar progress-bar-info" style="width: 39%; background-color:#0099ff;"></div></div></div>
+                </div>
+              </div>
+              <div class="widget">
+                <div class="widget-header"><h4><i class="fa fa-twitter"></i> Check our twitter channel for short news!</h4></div>
+                <div class="widget-content" data-twttr-id="twttr-sandbox-0"><iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" class="twitter-timeline twitter-timeline-rendered" style="border: none; max-width: 100%; min-width: 180px;" title="Twitter Timeline" width="520" height="500"></iframe><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></div>
+              </div> */ ?>
+            </div>
+          </div>
+<!--{template print/print_footer}-->

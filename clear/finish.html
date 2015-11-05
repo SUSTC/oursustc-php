@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>完成 - HTML5 Clear</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<link rel="apple-touch-icon-precomposed" href="apple-touch-icon-precomposed.png">
+		<link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
+	</head>
+	<body>
+
+		<div id="wrapper">
+			<div class="collection">
+				<div class="item todo-item green" style="z-index: 0; -webkit-transform: translate3d(0px, 0px, 0px);" data-id="1">
+					<div class="slider" style="background-color: rgb(233, 15, 12);">
+						<div class="inner">
+							<span class="title">
+								<span class="text">完成</span>
+								<a href="/clear/top.html" target="_blank">查看排名</a>
+								<span class="line"></span>
+							</span>
+						</div>
+					</div>
+				</div>
+				<div class="item list-item" style="z-index: 1; -webkit-transform: translate3d(0px, 62px, 0px);" data-id="2">
+					<div class="slider" style="background-color: rgb(34, 145, 249);">
+						<div class="inner">
+							<span class="title">
+								<span class="text">认识人数</span>
+							</span>
+							<div class="count">0</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script type="text/javascript" src="/static/legacy/js/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript">
+			var C = {};
+		</script>
+		<script src="js/client.js"></script>
+		<script src="js/touch.js"></script>
+		<script>
+		var _gaq = _gaq || [];
+		  _gaq.push(['_setAccount', 'UA-33507165-1']);
+		  _gaq.push(['_trackPageview']);
+		  (function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		  })();
+		</script>
+		<script>
+			if (!C.client.isTouch) {
+				$(document.body).addClass('desktop');
+			}
+			$.ajax({
+				url: '/clear/api.php?action=knowcount',
+				dataType: 'json',
+				success: function (data) {
+					if (data && parseInt(data.errno) === 0) {
+						$('.collection .list-item .count').text(data.knowcount);
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

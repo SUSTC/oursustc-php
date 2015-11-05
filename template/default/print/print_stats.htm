@@ -1,0 +1,24 @@
+<!--{if $stats = $cloudprint->get_stats()}-->
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                  <div class="dashboard-stat green">
+                    <div class="visual">
+                      <i class="fa fa-bar-chart-o"></i>
+                    </div>
+                    <div class="details">
+                      <div class="number">{$stats['24hours']}</div>
+                      <div class="desc">{lang last_24hours}</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                  <div class="dashboard-stat green">
+                    <div class="visual">
+                      <i class="fa fa-bar-chart-o"></i>
+                    </div>
+                    <div class="details">
+                      <div class="number">{$stats['total']}</div>
+                      <div class="desc">{lang total}</div>
+                    </div>
+                  </div>
+                </div>
+<!--{/if}-->

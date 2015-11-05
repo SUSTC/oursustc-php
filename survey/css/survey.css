@@ -1,0 +1,112 @@
+
+#loading {
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  font-size: xx-large;
+}
+
+#top {
+  margin: 10px auto;
+  width: 290px;
+  height: 820px;
+}
+
+#survey {
+  margin: 10px auto;
+}
+
+.survey-well {
+  background-color: rgba(245, 245, 245, 0.6);
+}
+
+.btn-submit {
+  width: 80px;
+}
+
+#top .famous {
+  float: left;
+}
+
+#top .text {
+  line-height: 60px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #000;
+  text-shadow: 0 0 20px #000;
+}
+
+body {
+  background-image: url(/static/legacy/img/top/bg.png);
+  background-position: fixed;
+  background-repeat: repeat-x;
+  background-color: #39C;
+}
+
+.decoration.clouds {
+  left: 0;
+  top: 0;
+  background-image: url(/static/legacy/img/top/clouds.png);
+  width: 655px;
+  height: 179px;
+  z-index: -2;
+}
+
+.decoration {
+  position: fixed;
+}
+
+.item {
+  display: block;
+  position: absolute;
+  margin-top: 0px;
+
+  background-color: rgba(255, 255, 255, 0.9);
+
+  opacity: 1;
+  -webkit-transition: margin-top 2s, opacity 2s;
+  -moz-transition: margin-top 2s, opacity 2s;
+  -ms-transition: margin-top 2s, opacity 2s;
+  -o-transition: margin-top 2s, opacity 2s;
+  transition: margin-top 2s, opacity 2s;
+
+  text-align: center;
+
+  width: 270px;
+  height: 60px;
+
+  padding: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  box-shadow: 0 1px 2px #333;
+  -moz-box-shadow: 0 1px 2px #333;
+  -webkit-box-shadow: 0 1px 2px #333;
+}
+
+@media (min-width: 980px) {
+  .decoration.clouds {
+    top: 40px;
+  }
+  .item {
+    width: 470px;
+  }
+  #top {
+    width: 490px;
+  }
+}
+
+@media (max-width: 767px) {
+  .item {
+    width: 260px;
+  }
+  #top {
+    width: 280px;
+  }
+}
+
+.rating-input {
+  display: inline-block;
+}

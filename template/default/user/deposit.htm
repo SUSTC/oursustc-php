@@ -1,0 +1,52 @@
+<!--{template common/header}-->
+		<title>{lang deposit} - {lang sustc_us}</title>
+		
+<!--{template common/header_style}-->
+<!--{template user/user_header}-->
+		<div class="box">
+			<div class="content">
+				<form class="form-vertical deposit-form" id="sustc_deposit_form" action="/user/deposit" method="post" style="" novalidate="novalidate" autocomplete="off">
+					<input type="hidden" name="formhash" value="{$_G['formhash']}">
+					<h3 class="form-title">{lang deposit_help}</h3>
+					<!--{if $err['disabled']}-->
+					<div class="alert alert-danger">{lang deposit_disabled}</div>
+					<!--{else}-->
+					<div class="alert alert-warning">
+						<p>{lang deposit_alipay_help}</p>
+						<img src="/static/legacy/img/alipay_instant_pay.png"></img>
+						<p><strong>{lang note}</strong>: {lang deposit_alipay_note}</p>
+					</div>
+					<!--{/if}-->
+					<!--{if isset($err['success'])}-->
+					<!--{if !$err['success']}-->
+					<div class="alert fade in alert-danger">
+						<i class="fa fa-remove close" data-dismiss="alert"></i>
+						<!--{if $err['code'] == -1}-->{lang error_parameters}<!--{elseif $err['code'] == 1}--><!--{/if}-->
+					</div>
+					<!--{/if}-->
+					<!--{/if}-->
+					<div class="form-group has-success">
+						<select class="form-control" name="deposit[method]">
+							<option value="alipay" selected="selected">{lang alipay}</option>
+						</select>
+					</div>
+					<div class="form-group has-success">
+						<select class="form-control" name="deposit[price]">
+							<option value="500">5 {lang yuan}</option>
+							<option value="1000" selected="selected">10 {lang yuan}</option>
+							<option value="2000">20 {lang yuan}</option>
+							<option value="5000">50 {lang yuan}</option>
+						</select>
+					</div>
+					<div class="form-actions">
+						<button type="submit" class="submit btn btn-primary pull-right" onclick="javascript:$(this).submit();"<!--{if $err['disabled']}--> disabled="disabled"<!--{/if}-->>{lang go_deposit} <i class="fa fa-angle-right"></i></button>
+					</div>
+				</form>
+			</div>
+			<div class="inner-box">
+				<div class="content">
+					<a href="/"><i class="fa fa-angle-left"></i> {lang back_to_homepage}</a>
+				</div>
+			</div>
+		</div>
+<!--{template user/user_footer}-->

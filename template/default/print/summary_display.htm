@@ -1,0 +1,7 @@
+            <!--{if $sustc->user->islogin()}-->
+            <ul class="page-stats hidden-xs">
+              <li><div class="summary"><span>{lang balance}</span><div id="balance_display"><span class="value"><i class="fa fa-cny"></i> {$cloudprint->usersummary['balance']}</span><!--{if $cloudprint->usersummary['balance_pending']}-->( +{$cloudprint->usersummary['balance_pending']} <span rel="popover" data-toggle="popover" data-placement="bottom" data-trigger="hover" data-content="{lang balance_pending_help}" title="{lang balance_pending}"><i class="fa fa-question-circle"></i></span>)<!--{/if}--></div></div></li>
+              <li><div class="summary"><span>{lang in_queue}</span><h3 id="inqueue_display">{$cloudprint->usersummary['inqueue']}</h3></div></li>
+              <li><div class="summary"><span>{lang printing}</span><h3 id="printing_display">{$cloudprint->usersummary['printing']}</h3></div></li>
+            </ul>
+            <!--{/if}-->

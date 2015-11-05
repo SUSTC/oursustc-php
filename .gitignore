@@ -1,0 +1,7 @@
+/data/template/*
+/src/config.php
+/src/lib/alipay/alipay.config.php
+/install/user.online.sql
+/test.php
+/update.php
+/survey/img/*

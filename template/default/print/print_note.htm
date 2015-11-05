@@ -1,0 +1,33 @@
+          <div class="row">
+            <!--{if $cloudprint->nodestatus['err']}-->
+            <div class="col-md-12">
+              <div class="note note-danger">
+                <div class="">
+                  <h2>{lang error}:</h2>
+                  <p><strong><!--{eval echo implode(', ', $cloudprint->nodestatus['err'])}-->{$nodename}</strong> {lang printer_node_problem}</p>
+                </div>
+              </div>
+            </div>
+            <!--{/if}-->
+            <div class="col-md-6">
+              <div class="note note-info">
+                <div class="">
+                  <h2>{lang note}:</h2>
+                  <p><strong>彩色打印机</strong></p>
+                  <p>关于彩色打印收费，由于成本原因，我们将价格定为1.3元每面。</p>
+                  <p>感谢大家的支持。</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="note note-success">
+                <div class="">
+                  <h2>{lang note}:</h2>
+                  <p><i class="fa fa-check"></i> <strong>欢迎</strong></p>
+                  <p>如果您无法登录您的账号，请加入QQ群 40148035 与我们联系。</p>
+                  <p>反馈与建议: <a href="https://sustc.us/board/support">https://sustc.us/board/support</a></p>
+                  <p>感谢大家的支持。</p>
+                </div>
+              </div>
+            </div>
+          </div>

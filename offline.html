@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="author" content="SUSTC-IT" />
+    <meta name="copyright" content="2014 SUSTC-IT" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>主服务器离线 - 我们的南科大</title>
+    <style>
+      .content {
+        width: 768px;
+        margin: 0 auto;
+      }
+      @media (max-width: 767px) {
+        body {
+          padding-left: 0px;
+          padding-right: 0px;
+        }
+        html {
+          overflow-x: hidden;
+        }
+        .content {
+          width: auto;
+        }
+      }
+      .note {
+        margin:0 0 20px 0;
+        padding:15px 30px 15px 15px;
+        border-left:5px solid #eee;
+      }
+      .note h1,.note h2,.note h3,.note h4 {
+        margin-top:0;
+      }
+      .note p:last-child {
+        margin-bottom:0;
+      }
+      .note code,.note .highlight {
+        background-color:#fff;
+      }
+      .note-danger {
+        background-color:#FAEAE6;
+        border-color:#ed4e2a;
+      }
+      .note-warning {
+        background-color:#FCF3E1;
+        border-color:#fcb322;
+      }
+      .note-info {
+        background-color:#E8F6FC;
+        border-color:#57b5e3;
+      }
+      .note-success {
+        background-color:#EBFCEE;
+        border-color:#3cc051;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="header"></div>
+    <div id="main" class="content">
+      <div class="note note-danger">
+        <h2>主服务器离线</h2>
+        <p>机房设备维护，服务器检修中，暂时无法进行打印，给大家带来不便我们深表歉意。</p>
+        <p>建议大家加QQ群 40148035 以获取人工的打印帮助和最新的通知。</p>
+      </div>
+    </div>
+    <script>
+      var divMain = document.getElementById("main");
+      var height = document.body.scrollHeight;
+      var divHeight = divMain.offsetHeight;
+      if (height > divHeight) {
+        var htop = (height - divHeight) * (1-0.618);
+        document.getElementById("header").style.height = htop.toString() + "px";
+      }
+    </script>
+  </body>
+</html>

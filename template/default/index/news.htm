@@ -1,0 +1,68 @@
+<!--{template common/header}-->
+    <title>{lang index} - {lang sustc_us}</title>
+    
+<!--{template common/header_style}-->
+  </head>
+  <body class="theme-dark">
+    <header class="header navbar navbar-fixed-top" role="banner">
+      <div class="container" style="padding-right:0px;">
+<!--{template common/navbar}-->
+        <ul class="nav navbar-nav navbar-left">
+          <li class="dropdown">
+            <a href="#" class="project-switcher-btn dropdown-toggle hidden-xs" style="">
+              <span style="font-weight:600;" class="">{lang projects}</span>
+              <i class="fa fa-caret-down small"></i>
+            </a>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="project-switcher-btn dropdown-toggle visible-xs" style="">
+              <span style="text-transform:uppercase;font-weight:700;margin-left:10px;">{lang projects}</span>
+              <i class="fa fa-caret-down small"></i>
+            </a>
+          </li>
+        </ul>
+<!--{template common/user_bar}-->
+      </div>
+<!--{template common/project_switcher}-->
+      <!-- <div class="decoration clouds"></div> -->
+    </header>
+    <div id="container" class="fixed-header">
+<!--{template common/sidebar}-->
+      <div id="content">
+        <div class="container" id="container_main_own">
+          <div class="crumbs hidden-xs">
+            <ul id="breadcrumbs" class="breadcrumb hidden-sm">
+              <li><i class="fa fa-home"></i><a href="/">{lang sustc_us}</a></li>
+              <li class="current">{lang index}</li>
+            </ul>
+          </div>
+          <div class="page-header">
+            <div class="page-title"><h3><i class="fa fa-bullhorn"></i> {lang news_and_announcements}</h3><span>{lang news_description}</span></div>
+          </div>
+<!--{template index/index_note}-->
+          <div class="row">
+            <div class="col-md-6">
+<!--{template index/news_widget}-->
+            </div>
+          </div>
+<!--{template common/footer_info}-->
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="/static/legacy/js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="/static/legacy/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/static/legacy/js/sustc.js"></script>
+    <script type="text/javascript" src="/static/legacy/js/lodash.compat.min.js"></script>
+    <!--[if lt IE 9]><script src="/static/legacy/js/html5shiv.js"></script><![endif]-->
+    <script type="text/javascript" src="/static/legacy/js/jquery.uniform.min.js"></script>
+    <script type="text/javascript" src="/static/legacy/js/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="/static/legacy/js/nprogress.js"></script>
+    <script type="text/javascript" src="/static/legacy/js/jquery-ui-1.10.2.custom.min.js"></script>
+    <script type="text/javascript" src="/static/legacy/js/jquery.ui.touch-punch.min.js"></script>
+    <script type="text/javascript" src="/static/legacy/js/breakpoints.js"></script>
+    <script type="text/javascript" src="/static/legacy/js/jquery.slimscroll.min.js"></script>
+    <script type="text/javascript" src="/static/legacy/js/jquery.slimscroll.horizontal.min.js"></script>
+    <script type="text/javascript" src="/static/legacy/js/app.js"></script>
+    <script>$(document).ready(function(){ "use strict"; App.init(); $(':radio.uniform, :checkbox.uniform').uniform(); });</script>
+  </body>
+</html>

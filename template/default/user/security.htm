@@ -1,0 +1,59 @@
+<!--{template common/header}-->
+		<title>{lang security} - {lang sustc_us}</title>
+		
+<!--{template common/header_style}-->
+<!--{template user/user_header}-->
+		<div class="box">
+			<div class="content">
+				<form class="form-vertical security-form" id="sustc_security_form" action="/user/security" method="post" style="" novalidate="novalidate" autocomplete="off">
+					<input type="hidden" name="formhash" value="{$_G['formhash']}">
+					<h3 class="form-title">{lang security_help}</h3>
+					<!--{if isset($err['success'])}-->
+					<!--{if $err['success']}-->
+					<div class="alert alert-success fade in" style="margin-top:0px; margin-bottom:10px;">
+						<i class="fa fa-check" data-dismiss="alert"></i>
+						<strong>Success!</strong> You changed your <!--{if $err['changed']['email'] && $err['changed']['password']}-->password and email<!--{elseif $err['changed']['email']}-->email<!--{elseif $err['changed']['password']}-->password<!--{/if}--> successfully.
+					</div>
+					<!--{else}-->
+					<div class="alert fade in alert-danger">
+						<i class="fa fa-remove close" data-dismiss="alert"></i>
+						<!--{if $err['code'] == -1}-->{lang error_parameters}<!--{elseif $err['code'] == 1}-->The password is incorrect.<!--{elseif $err['code'] == 2}-->New password does not match confirmation.<!--{elseif $err['code'] == 3}-->Nothing changed.<!--{/if}-->
+					</div>
+					<!--{/if}-->
+					<!--{/if}-->
+					<div class="form-group">
+						<div class="input-icon">
+							<i class="fa fa-lock fa-hack"></i>
+							<input type="password" name="user[password]" minlength="3" maxlength="50" class="form-control" placeholder="{lang current_password}" data-rule-required="true" data-msg-required="{lang enter_current_password}" />
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="input-icon">
+							<i class="fa fa-lock fa-hack"></i>
+							<input type="password" id="new_password" name="user[new_password]" minlength="3" maxlength="50" class="form-control" placeholder="{lang new_password} ({lang optional})" />
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="input-icon">
+							<i class="fa fa-lock fa-hack"></i>
+							<input type="password" id="new_password2" name="user[new_password2]" minlength="3" maxlength="50" class="form-control" placeholder="{lang confirm_new_password}" data-rule-equalTo="#new_password" />
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="input-icon">
+							<i class="fa fa-envelope fa-hack-lpw"></i>
+							<input type="text" name="user[email]" class="form-control" placeholder="{lang new_email_address} ({lang optional})" data-rule-email="true">
+						</div>
+					</div>
+					<div class="form-actions">
+						<button type="submit" class="submit btn btn-primary pull-right" onclick="javascript:$(this).submit();">{lang save} <i class="fa fa-angle-right"></i></button>
+					</div>
+				</form>
+			</div>
+			<div class="inner-box">
+				<div class="content">
+					<a href="/"><i class="fa fa-angle-left"></i> {lang back_to_homepage}</a>
+				</div>
+			</div>
+		</div>
+<!--{template user/user_footer}-->

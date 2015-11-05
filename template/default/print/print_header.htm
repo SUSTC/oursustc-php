@@ -1,0 +1,59 @@
+<!--{template common/header}-->
+    <title>{lang cloudprint} - {lang sustc_us}</title>
+    
+<!--{template common/header_style}-->
+  </head>
+  <body class="theme-dark">
+    <header class="header navbar navbar-fixed-top" role="banner">
+      <div class="container" style="padding-right:0px;">
+<!--{template common/navbar}-->
+        <ul class="nav navbar-nav navbar-left">
+          <li class="dropdown">
+            <a href="#" class="project-switcher-btn dropdown-toggle hidden-xs" style="">
+              <span style="font-weight:600;" class="">{lang cloudprint}</span>
+              <img style="margin-top: -9px; margin-bottom:-6px;" src="/static/legacy/img/cloudprint_logo_small.png" alt="cloudPrint">
+            </a>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="project-switcher-btn dropdown-toggle visible-xs" style=""><span style="text-transform:uppercase;font-weight:700;margin-left:10px;">{lang cloudprint}</span> <img style="margin-top: -9px; margin-bottom:-6px;" src="/static/legacy/img/cloudprint_logo_small.png" alt="cloudPrint"></a>
+          </li>
+        </ul>
+<!--{template common/user_bar}-->
+      </div>
+<!--{template common/project_switcher}-->
+      <!-- <div class="decoration clouds"></div> -->
+    </header>
+    <div id="container" class="fixed-header">
+<!--{template common/sidebar}-->
+      <div id="content">
+        <div class="container" id="container_main_own">
+          <div class="crumbs hidden-xs">
+            <ul id="breadcrumbs" class="breadcrumb hidden-sm">
+              <li><i class="fa fa-home"></i><a href="/">{lang sustc_us}</a></li>
+              <li class="current"><a href="/print/" title="">{lang cloudprint}</a></li>
+            </ul>
+            <ul class="crumb-buttons">
+              <li style="border-left:0;" class="first"><p style="border-left:0;width:130px; text-align:center;"><span> {lang print_queue}: <span id="print_queue_count">{$cloudprint->nodestatus['inqueue']}</span> <span id="print_queue_diff" style="color: #94B86E; font-weight:bold;"></span></span></p></li>
+              <li class="hidden-sm hidden-md"><p style="width:130px; text-align:center;"><span>{lang printing}: <span id="printing_count">{$cloudprint->nodestatus['printing']}</span> <span id="printing_diff" style="color: #94B86E; font-weight:bold;"></span></span></p></li>
+              <li style="border-right:0;"><p style="border-right:0; text-align:center;">{lang node_online}: <span id="node_online_count">{$cloudprint->nodestatus['online']}</span></p></li>
+            </ul>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="widget visible-xs" style="margin-bottom:5px; margin-top:15px;">
+                <div class="widget-content">
+                  <!--{if $sustc->user->islogin()}-->
+                  <table style="width: 100%; border: 0;" class="align-center">
+                    <tbody>
+                      <tr>
+                        <td style="width: 33%;"><b>{lang balance}</b><br><span id="balance_display_mobile"><i class="fa fa-cny"></i> {$cloudprint->usersummary['balance']}</span></td>
+                        <td style="width: 33%;"><b>{lang in_queue}</b><br><span id="inqueue_display_mobile">{$cloudprint->usersummary['inqueue']}</span></td>
+                        <td style="width: 33"><b>{lang printing}</b><br><span id="printing_display_mobile">{$cloudprint->usersummary['printing']}</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <!--{/if}-->
+                </div>
+              </div>
+            </div>
+          </div>

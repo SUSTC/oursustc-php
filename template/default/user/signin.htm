@@ -1,0 +1,95 @@
+<!--{template common/header}-->
+		<title>{lang signin} - {lang sustc_us}</title>
+		
+<!--{template common/header_style}-->
+<!--{template user/user_header}-->
+		<div class="box">
+			<div class="content">
+				<form class="form-vertical login-form" id="sustc_login_form" action="/user/signin" method="post" style="" novalidate="novalidate">
+					<input type="hidden" name="formhash" value="{$_G['formhash']}">
+					<input type="hidden" name="redirect" value="{$redirect}">
+					<h3 class="form-title">{lang signin_help}</h3>
+					<!--{if (isset($err['logout']) && $err['logout'])}-->
+					<div class="alert alert-success fade in" style="margin-top:0px; margin-bottom:10px;">
+						<i class="fa fa-check" data-dismiss="alert"></i>
+						{lang successfully_logged_out}
+					</div>
+					<!--{/if}-->
+					<!--{if $err['code'] != 0}-->
+					<div class="alert fade in alert-danger">
+						<i class="fa fa-remove close" data-dismiss="alert"></i>
+						{lang username_or_password_incorrect}
+					</div>
+					<!--{/if}-->
+					<div class="form-group has-success">
+						<div class="input-icon">
+							<i class="fa fa-user fa-hack"></i>
+							<input type="text" name="user[username]" minlength="3" maxlength="24" class="form-control has-success" placeholder="{lang username}" autofocus="autofocus" data-rule-required="true" data-msg-required="{lang enter_username}" />
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="input-icon">
+							<i class="fa fa-lock fa-hack"></i>
+							<input type="password" name="user[password]" minlength="3" maxlength="50" class="form-control" placeholder="{lang password}" data-rule-required="true" data-msg-required="{lang enter_password}" />
+						</div>
+					</div>
+					<div class="form-actions">
+						<button type="submit" class="submit btn btn-primary pull-right" onclick="javascript:$(this).submit();">{lang signin} <i class="fa fa-angle-right"></i></button>
+					</div>
+				</form>
+				<?php /*
+				<form class="form-vertical register-form" action="/user/signup" method="post" style="display:none;">
+					<input type="hidden" name="formhash" value="<?php echo $sustc->security->formhash; ?>">
+					<h3 class="form-title">Sign up for free</h3>
+					<div class="form-group">
+						<div class="input-icon">
+							<i class="fa fa-user fa-hack"></i>
+							<input type="text" name="username_register" minlength="4" maxlength="24" class="form-control" placeholder="Username" autofocus="autofocus" data-rule-required="true" />
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="input-icon">
+							<i class="fa fa-lock fa-hack"></i>
+							<input type="password" name="password_register" minlength="6" maxlength="50" class="form-control" placeholder="Password" id="register_password" data-rule-required="true" />
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="input-icon">
+							<i class="fa fa-ok fa-hack"></i>
+							<input type="password" name="password_register_repeat" minlength="6" maxlength="50" class="form-control" placeholder="Confirm password" data-rule-required="true" data-rule-equalTo="#register_password" />
+						</div>
+					</div>
+					<div class="form-actions">
+						<button type="button" class="back btn btn-default pull-left"><i class="fa fa-angle-left"></i> Back</button>
+						<button type="submit" class="submit btn btn-primary pull-right">Sign up <i class="fa fa-angle-right"></i></button>
+					</div>
+				</form>
+				*/ ?>
+			</div>
+			<div class="inner-box">
+				<div class="content">
+					<i class="fa fa-remove close" style="display:none;"></i>
+					<a href="#" class="forgot-password-link">{lang forgot_password}</a>
+					<form class="form-vertical forgot-password-form" action="/user/reset" method="post" style="display:none;" novalidate="novalidate">
+						<input type="hidden" name="formhash" value="{$_G['formhash']}">
+						<div class="form-group">
+							<div class="input-icon">
+								<i class="fa fa-envelope fa-hack-lpw"></i>
+								<input type="text" name="user[email]" class="form-control" placeholder="{lang email}" data-rule-required="true" data-rule-email="true" data-msg-required="{lang enter_email}">
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="input-icon">
+								<i class="fa fa-user fa-hack-lpw"></i>
+								<input type="text" name="user[username]" minlength="3" maxlength="24" class="form-control" placeholder="{lang username}" data-rule-required="true" data-msg-required="{lang enter_username}">
+							</div>
+						</div>
+						<button type="submit" class="submit btn btn-default btn-block">{lang reset_password}</button>
+					</form>
+					<div class="forgot-password-done hide-default">
+						<i class="fa fa-ok success-icon"></i><span>{lang sent_email}</span>
+					</div>
+				</div>
+			</div>
+		</div>
+<!--{template user/user_footer}-->

@@ -1,0 +1,153 @@
+
+.relative {
+  position: relative;
+}
+
+.panel {
+  -webkit-box-shadow: 0 2px 6px gray;
+  -moz-box-shadow: 0 2px 6px gray;
+  -o-box-shadow: 0 2px 6px gray;
+  box-shadow: 1px 2px 6px gray;
+  margin: 3px 0px;
+  background-color: #fff;
+}
+
+.panel .header {
+  padding: 10px;
+  border-bottom: 1px solid #e2e2e2;
+}
+
+.panel .inner {
+  padding: 10px;
+}
+
+.panel .inner hr {
+  margin: 20px -10px;
+}
+
+.panel .panel-cover {
+  position: relative;
+}
+
+.panel .inner .panel-cover {
+  margin: -10px;
+}
+
+.panel .panel-cover .cover {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 85%;
+  overflow: hidden;
+}
+
+.panel .panel-cover .cover img {
+  width: 100%;
+}
+
+.panel .panel-cover .cover .cover-gradient {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-image: -moz-linear-gradient(75deg, #fff 0%, rgba(255, 255, 255, .975) 25%, rgba(255, 255, 255, .85) 50%, rgba(255, 255, 255, .15) 75%,transparent 100%, transparent),
+    -moz-linear-gradient(90deg, #fff 0%, rgba(255, 255, 255, .15) 25%,transparent 100%, transparent),
+    -moz-linear-gradient(5deg, #fff 5%, rgba(255, 255, 255, .15) 30%,transparent 100%, transparent);
+  background-image: -o-linear-gradient(75deg, #fff 0%, rgba(255, 255, 255, .975) 25%, rgba(255, 255, 255, .85) 50%, rgba(255, 255, 255, .15) 75%,transparent 100%, transparent),
+    -o-linear-gradient(90deg, #fff 0%, rgba(255, 255, 255, .15) 25%,transparent 100%, transparent),
+    -o-linear-gradient(5deg, #fff 5%, rgba(255, 255, 255, .15) 30%,transparent 100%, transparent);
+  background-image: -ms-linear-gradient(75deg, #fff 0%, rgba(255, 255, 255, .975) 25%, rgba(255, 255, 255, .85) 50%, rgba(255, 255, 255, .15) 75%,transparent 100%, transparent),
+    -ms-linear-gradient(90deg, #fff 0%, rgba(255, 255, 255, .15) 25%,transparent 100%, transparent),
+    -ms-linear-gradient(5deg, #fff 5%, rgba(255, 255, 255, .15) 30%,transparent 100%, transparent);
+  background-image: linear-gradient(75deg, #fff 0%, rgba(255, 255, 255, .975) 25%, rgba(255, 255, 255, .85) 50%, rgba(255, 255, 255, .15) 75%,transparent 100%, transparent),
+    linear-gradient(90deg, #fff 0%, rgba(255, 255, 255, .15) 25%,transparent 100%, transparent),
+    linear-gradient(5deg, #fff 5%, rgba(255, 255, 255, .15) 30%,transparent 100%, transparent);
+
+  /* prefer */
+  background-image: -webkit-linear-gradient(75deg, #fff 0%, rgba(255, 255, 255, .975) 25%, rgba(255, 255, 255, .85) 50%, rgba(255, 255, 255, .15) 75%,transparent 100%, transparent),
+    -webkit-linear-gradient(90deg, #fff 0%, rgba(255, 255, 255, .15) 25%,transparent 100%, transparent),
+    -webkit-linear-gradient(5deg, #fff 5%, rgba(255, 255, 255, .15) 30%,transparent 100%, transparent);
+}
+
+.panel .breadcrumb {
+  padding: 0px;
+  margin: 0px;
+  border: none;
+  background: none;
+}
+
+.breadcrumb .divider {
+  padding: 0 5px;
+  color: #999999;
+}
+
+.breadcrumb > li {
+  display: inline;
+  text-shadow: 0 1px 0 #ffffff;
+}
+
+.breadcrumb .btn-sort {
+  float: right;
+  margin: -3px 5px 0 0;
+}
+
+.col_fade {
+  color: #aaa;
+}
+
+.overvisible {
+  overflow: visible;
+}
+
+.overhidden {
+  overflow: hidden;
+}
+
+.form-actions {
+  margin: 20px 0 8px;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.size73 {
+  width: 73px;
+  height: 73px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+#user-front-cover-controls .size73 {
+  height: auto;
+}
+
+form {
+  font-size: 12px;
+}
+
+.form-horizontal .controls p {
+  color: #999;
+}
+
+
+.main {
+/*  padding-top: 20px; */
+  margin-top: 20px;
+}
+
+.btn .spinner {
+  margin: -10px auto 0 auto;
+}
+
+th .dropdown-menu, .btn-sort .dropdown-menu {
+  min-width: 0;
+}
+
+.btn-sort .dropdown-menu a, .btn-sort .dropdown-menu a:hover, .btn-sort .dropdown-menu a:focus, .btn-sort .dropdown-menu a:active {
+  text-shadow: none;
+}
+
+.table-verticalmiddle td {
+  vertical-align: middle;
+}

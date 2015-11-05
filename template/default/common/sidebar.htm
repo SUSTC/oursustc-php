@@ -1,0 +1,57 @@
+      <div id="sidebar" class="sidebar-fixed">
+        <div id="sidebar-content">
+          <ul id="nav">
+            <!--{if !defined('CURSCRIPT') || (defined('CURSCRIPT') && CURSCRIPT == 'index')}-->
+            <li class="current">
+              <a href="#">
+            <!--{else}-->
+            <li>
+              <a href="/board/news">
+            <!--{/if}-->
+                <i class="fa fa-star"></i>{lang news}
+              </a>
+            </li>
+            <!--{if defined('CURSCRIPT') && CURSCRIPT == 'print'}-->
+            <li class="current">
+              <a href="#">
+            <!--{else}-->
+            <li>
+              <a href="/print/">
+            <!--{/if}-->
+                <i class="fa fa-print"></i>{lang print_service}<i class="arrow fa fa-angle-left"></i>
+              </a>
+              <ul class="sub-menu">
+                <li><a href="/print/add"><i class="fa fa-angle-right"></i>{lang add}</a></li>
+                <li><a href="/print/status"><i class="fa fa-angle-right"></i>{lang status}</a></li>
+              </ul>
+            </li>
+            <!--{if $sustc->user->islogin()}-->
+            <li class=""><a href="/user/profile"><i class="fa fa-user"></i>{lang user}<i class="arrow fa fa-angle-left"></i></a>
+              <ul class="sub-menu">
+                <li><a href="/user/deposit"><i class="fa fa-angle-right"></i> {lang deposit}</a></li>
+                <li><a href="/user/settings"><i class="fa fa-angle-right"></i> {lang account_settings}</a></li>
+                <!--<li><a href="/user/security"><i class="fa fa-angle-right"></i> {lang account_security}</a></li>-->
+              </ul>
+            </li>
+            <!--{/if}-->
+            <li class="">
+              <a href="#"><i class="fa fa-comment"></i>{lang social}<span id="msgNotificationL1"></span><i class="arrow fa fa-angle-left"></i></a>
+              <ul class="sub-menu">
+                <!--{if $sustc->user->islogin()}-->
+                <li><a href="/user/messages"><i class="fa fa-angle-right"></i>{lang messages}<span id="msgNotificationL2"></span></a></li>
+                <!--{/if}-->
+                <li><a href="/page/contact"><i class="fa fa-angle-right"></i>{lang contact_us}</a></li>
+                <li><a href="/page/partners"><i class="fa fa-angle-right"></i>{lang partner_sites}</a></li>
+              </ul>
+            </li>
+            <li class="">
+              <a href="/page/print"><i class="fa fa-info"></i>{lang howto}</a>
+            </li>
+            <li class="">
+              <a href="/board/support"><i class="fa fa-info-circle"></i>{lang faq}</a>
+            </li>
+          </ul>
+          <div class="fill-nav-space"></div>
+        </div>
+        <div id="divider" class=""></div>
+      </div>
