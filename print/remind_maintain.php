@@ -51,11 +51,11 @@ Bodyhead;
 			$template=str_replace('{title}',$title,$template);
 			$Body=str_replace('{content}',$content,$template);
 			echo $Body;
-			// if(send_mail(EMAIL_ADDRESS,'SUSTC','[Cloudprinter_SUSTC]Error Alarm',$Body)){
-			// 	echo 'Something Wrong with printers.An email has been sent.';
-			// }else{
-			// 	echo 'Something Wrong with printers.But fail to send an email.';
-			// }
+			if(send_mail(EMAIL_ADDRESS,'SUSTC','[Cloudprinter_SUSTC]Error Alarm',$Body)){
+				echo 'Something Wrong with printers.An email has been sent.';
+			}else{
+				echo 'Something Wrong with printers.But fail to send an email.';
+			}
 	}else{
 		echo 'No printer is down.';
 	}
