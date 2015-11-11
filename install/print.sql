@@ -58,6 +58,7 @@ CREATE TABLE sustc_print_node (
   id mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
   name char(15) NOT NULL DEFAULT '',
   `status` tinyint(1) NOT NULL DEFAULT '0',
+  `under_repairing` tinyint(1) NOT NULL DEFAULT '0',
   lasttime int(10) unsigned NOT NULL DEFAULT '0',
   page smallint(6) unsigned NOT NULL DEFAULT '0',
   description varchar(255) NOT NULL,
