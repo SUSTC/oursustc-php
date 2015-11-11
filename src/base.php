@@ -14,21 +14,21 @@ class base {
 	var $time;
 	var $onlineip;
 	var $db;
-	
+
 	function base() {
 		$this->init_var();
 		$this->init_db();
 	}
-	
+
 	function init_var() {
 		$this->time = time();
 		define('TIMESTAMP', $this->time);
-		
+
 		$cip = getenv('HTTP_CLIENT_IP');
 		$xip = getenv('HTTP_X_FORWARDED_FOR');
 		$rip = getenv('REMOTE_ADDR');
-		$srip = $_SERVER['REMOTE_ADDR'];
-		if($cip && strcasecmp($cip, 'unknown')) {
+		$srip = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : 'unknown';
+		if ($cip && strcasecmp($cip, 'unknown')) {
 			$this->onlineip = $cip;
 		} elseif($xip && strcasecmp($xip, 'unknown')) {
 			$this->onlineip = $xip;
@@ -38,9 +38,9 @@ class base {
 			$this->onlineip = $srip;
 		}
 		preg_match("/[\d\.]{7,15}/", $this->onlineip, $match);
-		$this->onlineip = $match[0] ? $match[0] : 'unknown';
+		$this->onlineip = ($match && $match[0]) ? $match[0] : 'unknown';
 	}
-	
+
 	function init_db() {
 		/*
 		require_once SC_ROOT.'src/lib/db.class.php';
@@ -63,7 +63,7 @@ class base {
 		$this->db->set_config($db_config);
 		$this->db->connect();
 	}
-	
+
 	function implode($arr) {
 		return "'".implode("','", (array)$arr)."'";
 	}

@@ -1,5 +1,8 @@
 <?php
 
+// close error reporting
+error_reporting(0);
+
 define('IN_SUSTC', true);
 define('SC_ROOT', substr(__FILE__, 0, -8)); //strlen('cron.php')
 

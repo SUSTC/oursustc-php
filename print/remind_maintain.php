@@ -7,18 +7,17 @@
 	 *
 	 * PHP version 5
 	 * @category print
-	 * @author Frank <68852874@qq.com>
+	 * @author Frank <68852874@qq.com>, tengattack
 	 * @copyright SUSTC
-	 * @version [1.0] 2015-11
+	 * @version [1.1] 2015-11-11
 	 */
 
-	define('CLOUDPRINT_NODE_NOT_REPAIRING', 0);
-	define('CLOUDPRINT_NODE_DURING_REPAIRING', 1);
-
-	require_once SC_ROOT.'src/service/cloudprint.php';
-	require_once SC_ROOT.'src/core.php';
-	require_once SC_ROOT."src/func/send_mail.php";
 	require_once SC_ROOT.'src/config.php';
+
+	require_once SC_ROOT.'src/core.php';
+
+	require_once SC_ROOT."src/func/send_mail.php";
+	require_once SC_ROOT.'src/service/cloudprint.php';
 
 	$sustc = new core();
 	$cloudprint = new cloudprint($sustc);
@@ -34,12 +33,12 @@
 	foreach ($cloudprint->nodes as $nodes) {
 		if ($nodes['status'] == CLOUDPRINT_NODE_STATUS_OFFLINE) {
 			if ($nodes['under_repairing'] == CLOUDPRINT_NODE_NOT_REPAIRING) {
-				$error_printers []= array('id'=>$nodes['id'], 'name'=>$nodes['name'], 'err'=>'Offline');
+				$error_printers[] = array('id'=>$nodes['id'], 'name'=>$nodes['name'], 'err'=>'Offline');
 				write_status_to_repairing($nodes['id'], CLOUDPRINT_NODE_DURING_REPAIRING);
 			}
 		} elseif ($nodes['status'] == CLOUDPRINT_NODE_STATUS_PROBLEM) {
 			if ($nodes['under_repairing'] == CLOUDPRINT_NODE_NOT_REPAIRING) {
-				$error_printers []= array('id'=>$nodes['id'], 'name'=>$nodes['name'], 'err'=>'Problem');
+				$error_printers[] = array('id'=>$nodes['id'], 'name'=>$nodes['name'], 'err'=>'Problem');
 				write_status_to_repairing($nodes['id'], CLOUDPRINT_NODE_DURING_REPAIRING);
 			}
 		} else {
@@ -52,12 +51,11 @@
 
 	//send email
 	if (count($error_printers) > 0) {
-			$template = file_get_contents(SC_ROOT.'template/mail/cloudprint_reminder.htm');
 
-			$title = '云打印节点出现故障';
+			$title = 'cloudPrint 节点出现故障';
 			$contenthead = <<<Bodyhead
 <p>您好！</p>
-<p>很不幸的告诉你，以下云打印节点出现故障。</p>
+<p>很不幸的告诉你，以下 cloudPrint 节点出现故障。</p>
 <ul style="background-color: #EEE;border: 1px solid #DDD;padding: 20px;margin: 15px 0;">
 Bodyhead;
 			$contentfoot = '';
@@ -65,18 +63,20 @@ Bodyhead;
 				$contentfoot .= '<li>'.$value['name'].' | ErrorType: '.$value['err'].'</li>';
 			}
 			$contentfoot .= '</ul>';
-			$content = $contenthead. $contentfoot;
-			$template = str_replace('{title}', $title, $template);
-			$Body = str_replace('{content}', $content, $template);
-			//echo $Body;
-			if (send_mail(EMAIL_ADDRESS, 'SUSTC', '[SUSTC.US] ' . $title, $Body)) {
-				echo 'Something Wrong with printers.An email has been sent.';
+			$content = $contenthead . $contentfoot;
+
+			echo "Something Wrong with printers.\n";
+
+			if (send_notification_mail('cloudprint_reminder', $title,
+					array('title' => $title, 'content' => $content))) {
+				echo 'An email has been sent successfully.';
 			} else {
-				echo 'Something Wrong with printers.But fail to send an email.';
+				echo 'But fail to send an email.';
 			}
 	} else {
-		echo 'No printer is down or an email has been sent.';
+		echo 'No printer is down.';
 	}
+	echo "\n";
 
 	//array in the $cloudprint
 	/*

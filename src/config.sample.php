@@ -17,11 +17,14 @@ define('SC_PRIVATEKEY', 'SCPKEY');
 define('USER_API', 'http://localhost:3005/api/user');
 define('USER_API_KEY', 'UAKEYhere');
 define('USER_COOKIE_KEY', 'sc_user');
-//for_maintain_reminder
+
+// mail receiver
 define('EMAIL_ADDRESS', 'receiver@domain.com'); //警告被发送到的邮件地址
 define('EMAIL_NAME', 'Test');				//收件人称谓,随意
-//for_sendmail
-define('MAILER_HOST', 'smtp.qq.com');//发信SMTP服务器（默认端口25）
-define('MAILER_USERNAME', 'notifications@domain.com');
-define('MAILER_PASSWORD','password' );
+
+// mail sender
+define('MAILER_HOST', 'smtp.exmail.qq.com');//发信SMTP服务器（默认端口25）
+define('MAILER_USERNAME', 'notifications@sustc.us');
+define('MAILER_PASSWORD', 'password');
+
 ?>
