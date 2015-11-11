@@ -73,10 +73,10 @@ Bodyhead;
 			} else {
 				echo 'But fail to send an email.';
 			}
-	} else {
-		echo 'No printer is down.';
-	}
-	echo "\n";
+			echo "\n";
+	} /*else {
+		echo "No printer is down.\n";
+	}*/
 
 	//array in the $cloudprint
 	/*
