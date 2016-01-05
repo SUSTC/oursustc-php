@@ -228,6 +228,45 @@ if ($action == 'add') {
   } else {
     dredirect('/print/status');
   }
+} else if ($action == 'refund') {
+  // refund for failed
+  global $_G;
+  $qid = 0;
+  if (is_post()) {
+    //$err['code'] = -1;
+    if (isset($_POST['formhash'])
+        && $sustc->security->check_formhash($_POST['formhash'])) {
+      if (isset($_POST['queue_id'])) {
+        $qid = intval($_POST['queue_id']);
+      }
+    }
+  }
+  if ($qid) {
+    $queue = DB::fetch_first('SELECT * FROM '.DB::table('print_queue').' WHERE '.DB::implode(array('id' => $qid)));
+    if ($queue && $queue['uid'] == $_G['uid'] && TIMESTAMP - $queue['endtime'] < 60 * 60 * 24) {
+      // in one day
+      if ($queue['status'] == CLOUDPRINT_QUEUE_STATUS_FAIL || $queue['status'] == CLOUDPRINT_QUEUE_STATUS_ERROR) {
+        // calc costs
+        $cost_per = COST_PER_PAGE;
+        foreach ($cloudprint->nodes as $node) {
+          if ($queue['node_id'] == $node['id']) {
+            if ($node['colorful']) {
+              $cost_per = COST_PER_PAGE_COLORFUL;
+            }
+            break;
+          }
+        }
+        $cost = $queue['page'] * $queue['copies'] * $cost_per;
+        DB::update('print_queue',
+          array('status' => CLOUDPRINT_QUEUE_STATUS_REFUND, 'endtime' => TIMESTAMP),
+          array('id' => $qid));
+        DB::query('UPDATE '.DB::table('user_status').' SET `balance` = `balance` + '.$cost.' WHERE '.DB::implode(array('uid' => $_G['uid']), ' AND '));
+      }
+    }
+    dredirect('/print/status/'.$qid);
+  } else {
+    dredirect('/print/status');
+  }
 } else {
   include template('print/index');
 }

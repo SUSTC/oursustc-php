@@ -76,16 +76,21 @@
               </div>
               <div class="widget box">
                 <div class="widget-content">
-                  <form action="/print/cancel" method="post" class="form-horizontal">
+                  <form action="/print/cancel" method="post" class="form-horizontal" style="display:inline-block">
                     <input type="hidden" name="formhash" value="{$_G['formhash']}">
                     <input type="hidden" name="queue_id" value="{$queue['id']}">
-                    <div>
-                      <!--{if $queue['status'] == 0}-->
-                      <button type="submit" class="btn" id="task_cancel">{lang cancel}</button>
-                      <!--{else}-->
-                      <button type="submit" class="btn disabled" id="task_cancel" disabled="disabled">{lang cancel}</button>
-                      <!--{/if}-->
-                    </div>
+                    <!--{if $queue['status'] == 0}-->
+                    <button type="submit" class="btn" id="task_cancel">{lang cancel}</button>
+                    <!--{else}-->
+                    <button type="submit" class="btn disabled" id="task_cancel" disabled="disabled">{lang cancel}</button>
+                    <!--{/if}-->
+                  </form>
+                  <form action="/print/refund" method="post" class="form-horizontal" style="display:inline-block">
+                    <input type="hidden" name="formhash" value="{$_G['formhash']}">
+                    <input type="hidden" name="queue_id" value="{$queue['id']}">
+                    <!--{if ($queue['status'] == 4 || $queue['status'] == 5) && TIMESTAMP - $queue['endtime'] < 60 * 60 * 24}-->
+                    <button type="submit" class="btn" id="task_refund">{lang refund}</button>
+                    <!--{/if}-->
                   </form>
                 </div>
               </div>

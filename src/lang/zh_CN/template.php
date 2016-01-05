@@ -31,6 +31,7 @@ $lang = array (
   'confirm' => '确认',
   'submit' => '提交',
   'cancel' => '取消',
+  'refund' => '退款',
   'change' => '修改',
   'save' => '保存',
   'total' => '总共',
@@ -66,7 +67,7 @@ $lang = array (
   'confirm_new_password' => '确认新密码',
   'new_email_address' => '新电子邮件地址',
   'optional' => '可选',
-  
+
 
   'signin' => '登录',
   'signin_help' => '登录',
@@ -148,7 +149,7 @@ $lang = array (
   'queueid' => '队列ID',
   'pages' => '页数',
   'start_time' => '开始时间',
-  'end_time' => '结束时间',
+  'end_time' => '最后更新',
 );
 
 ?>

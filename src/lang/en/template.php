@@ -31,6 +31,7 @@ $lang = array (
   'confirm' => 'Confirm',
   'submit' => 'Submit',
   'cancel' => 'Cancel',
+  'refund' => 'Refund',
   'change' => 'Change',
   'save' => 'Save',
   'total' => 'Total',
@@ -66,7 +67,7 @@ $lang = array (
   'confirm_new_password' => 'Confirm new password',
   'new_email_address' => 'New email address',
   'optional' => 'optional',
-  
+
   'signin' => 'Sign in',
   'signin_help' => 'Sign in to your account',
   'security' => 'Security',
@@ -147,7 +148,7 @@ $lang = array (
   'queueid' => 'QueueId',
   'pages' => 'Pages',
   'start_time' => 'Start Time',
-  'end_time' => 'End Time',
+  'end_time' => 'Last Updated',
 );
 
 ?>

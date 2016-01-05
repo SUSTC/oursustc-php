@@ -78,6 +78,30 @@ Bodyhead;
 		echo "No printer is down.\n";
 	}*/
 
+	// then, find long-term no respond task
+	$start_time = TIMESTAMP - 24 * 60 * 60;	// one day before
+	$end_time = TIMESTAMP - 3 * 60 * 60;
+	$no_resp_queue = DB::fetch_all('SELECT id,status FROM '.DB::table('print_queue')
+		.' WHERE `status` IN (0,1,2) AND `starttime` < '.$end_time.' AND `starttime` >= '.$start_time.' ORDER BY '.DB::order('id', 'DESC'));
+	if (count($no_resp_queue) > 0) {
+		$cancel_ids = array();
+		$finish_ids = array();
+		foreach ($no_resp_queue as $q) {
+			if ($q['status'] == 0) {
+				$cancel_ids[] = $q['id'];
+			} else {
+				$finish_ids[] = $q['id'];
+			}
+		}
+		if (count($cancel_ids) > 0) {
+			DB::update('print_queue', array('status' => CLOUDPRINT_QUEUE_STATUS_CANCEL), DB::field('id', $cancel_ids));
+			echo "Canceled printing task(s).\n";
+		}
+		if (count($finish_ids) > 0) {
+			DB::update('print_queue', array('status' => CLOUDPRINT_QUEUE_STATUS_FINISH), DB::field('id', $finish_ids));
+			echo "Finished printing task(s).\n";
+		}
+	}
 	//array in the $cloudprint
 	/*
 	    [nodes] => Array
