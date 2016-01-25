@@ -1,4 +1,5 @@
 /data/template/*
+/data/deposit.log
 /src/config.php
 /src/lib/alipay/alipay.config.php
 /install/user.online.sql
