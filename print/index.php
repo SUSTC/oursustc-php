@@ -199,7 +199,12 @@ if ($action == 'add') {
         DB::update('print_queue', $u, DB::field('id', $ids, 'in'));
       }
     } else {
-      $api['err']['code'] = 1;
+	  if ($cloudprint->is_disabled_node($nodeName)) {
+		// result for disabled nodes
+		$api['err']['code'] = 2;
+	  } else {
+		$api['err']['code'] = 1;
+	  }
     }
   }
   echo json_encode($api, JSON_UNESCAPED_UNICODE);
