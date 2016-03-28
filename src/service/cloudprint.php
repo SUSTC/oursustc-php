@@ -43,23 +43,23 @@ class cloudprint
   }
 
   function init_nodestatus() {
-    $_nodes = DB::fetch_all('SELECT * FROM '.DB::table('print_node');
+    $_nodes = DB::fetch_all('SELECT * FROM '.DB::table('print_node'));
       //.' WHERE `status` <> '.CLOUDPRINT_NODE_STATUS_DISABLE);
     $onlinecount = 0;
     $onlinetime = (TIMESTAMP - (3 * 60));
-    
-	$errns = [];
-	$this->nodes = [];
-	$this->disabled_nodes = [];
-	
+
+    $errns = [];
+    $this->nodes = [];
+    $this->disabled_nodes = [];
+
     foreach ($_nodes as &$node) {
-	  if ($node['status'] == CLOUDPRINT_NODE_STATUS_DISABLE) {
-		// for disabled nodes
-		$this->disabled_nodes[] = $node;
-		continue;
-	  }
-	  
-	  //in 3 minutes it online
+      if ($node['status'] == CLOUDPRINT_NODE_STATUS_DISABLE) {
+        // for disabled nodes
+        $this->disabled_nodes[] = $node;
+        continue;
+      }
+
+      //in 3 minutes it online
       if ($node['lasttime'] >= $onlinetime) {
         $onlinecount++;
       } else {
@@ -68,8 +68,8 @@ class cloudprint
       if ($node['status'] == CLOUDPRINT_NODE_STATUS_PROBLEM) {
         $errns[] = $node['name'];
       }
-	  
-	  $this->nodes[] = $node;
+
+      $this->nodes[] = $node;
     }
     $this->nodestatus['err'] = $errns;
     $this->nodestatus['online'] = $onlinecount;
@@ -110,7 +110,7 @@ class cloudprint
     }
     return NULL;
   }
-  
+
   function is_disabled_node($node_name) {
     foreach ($this->disabled_nodes as &$node) {
       if ($node['name'] == $node_name) {
